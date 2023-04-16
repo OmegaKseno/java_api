@@ -1,7 +1,6 @@
 package org.example.sem1.sem2;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.Locale;
 
 public class Sem1 {
@@ -64,6 +63,32 @@ public class Sem1 {
         //import java.io.IOException; - нужно подтянуть библиотеку.
         if(!file.exists()){ //Создал условие если данного файла нет то создать его.(что бы не плодить файлы)
             file.createNewFile();//Само создание файла
+        }
+        /*todo Для записи в фай */
+        FileWriter fileWriter = new FileWriter(file);
+        fileWriter.write("str1\n");
+        fileWriter.write("str2\n");
+        /*todo Для закрытия и сохранения*/
+        fileWriter.flush();
+        //fileWriter.close();//комент для показа буфер райдера.
+        /*todo Для того что бы прочитать */
+        FileReader fileReader = new FileReader(file);
+        //читает он в массив чаров создадим его
+        //char[] fileChar = new char[20];
+        //теперь закидываем его туда.
+        //fileReader.read(fileChar);
+        //System.out.println(fileChar);
+        /*todo Для более простого записи и чтения Буфер!!!!!!!!!!!!*/
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write("str3");
+        bufferedWriter.newLine();
+        bufferedWriter.write("str4");
+        bufferedWriter.flush();
+        bufferedWriter.close();
+        /*todo Для чтения буфер ридер*/
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        while (bufferedReader.ready()){//условие  - пока не кончатся все строки
+            System.out.println(bufferedReader.readLine());// печать каждой строки
         }
 
     }
